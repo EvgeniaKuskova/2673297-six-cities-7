@@ -1,4 +1,11 @@
-﻿import {Command} from './command.interface';
+﻿import chalk from 'chalk';
+import { Command } from './command.interface.js';
+
+const COMMANDS: [command: string, description: string][] = [
+  ['--version', 'выводит номер версии'],
+  ['--help', 'печатает этот текст'],
+  ['--import <path>', 'импортирует данные из TSV'],
+];
 
 export class HelpCommand implements Command {
 
@@ -7,15 +14,22 @@ export class HelpCommand implements Command {
   }
 
   public execute(..._parameters: string[]): void {
-    console.info(`
-        Программа для подготовки данных для REST API сервера.
-        Пример:
-            cli.js --<command> [--arguments]
-        Команды:
-            --version:                   # выводит номер версии
-            --help:                      # печатает этот текст
-            --import <path>:             # импортирует данные из TSV
-            --generate <n> <path> <url>  # генерирует произвольное количество тестовых данных
-    `);
+    const commandColumnWidth = Math.max(...COMMANDS.map(([name]) => name.length)) + 4;
+
+    console.info();
+    console.info(chalk.bold.cyan('  Программа для подготовки данных для REST API сервера.'));
+    console.info();
+    console.info(chalk.italic('  Пример:'));
+    console.info(chalk.gray('    npm start -- --<command> [--arguments]'));
+    console.info();
+    console.info(chalk.bold('  Команды:'));
+
+    COMMANDS.forEach(([name, description]) => {
+      const command = chalk.yellow(name.padEnd(commandColumnWidth));
+      const comment = chalk.gray(`# ${description}`);
+      console.info(`    ${command}${comment}`);
+    });
+
+    console.info();
   }
 }
