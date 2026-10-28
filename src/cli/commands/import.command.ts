@@ -1,7 +1,7 @@
 ﻿import chalk from 'chalk';
 import { Command } from './command.interface.js';
 import { TSVFileReader } from '../../shared/libs/file-reader/tsv-file-reader.js';
-import {Offer} from '../../shared/types/offer.type';
+import {Offer} from '../../shared/types/offer/offer.type';
 
 export class ImportCommand implements Command {
   public getName(): string {

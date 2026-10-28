@@ -4,7 +4,7 @@ import {MockServerData} from '../../types/mock-server-data.type.js';
 import {generateRandomValue, getRandomItem, getRandomItems} from '../../helpers/common.js';
 import {TypeOffer} from '../../types/type-offer.enum.js';
 import {ComfortType} from '../../types/comfort.enum.js';
-import {UserType} from '../../types/user.type.js';
+import {UserType} from '../../types/user/user.type';
 import {CITIES} from '../../types/city.constants.js';
 
 
