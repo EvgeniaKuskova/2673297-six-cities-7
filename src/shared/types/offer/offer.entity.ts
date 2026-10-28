@@ -2,6 +2,8 @@
 import {UserEntity} from '../user/user.entity';
 import {ComfortType} from '../comfort.enum';
 import {TypeOffer} from '../type-offer.enum';
+import {CityName} from '../city.enum';
+import {Coordinates} from '../coordinates.types';
 
 export interface OfferEntity extends defaultClasses.Base {}
 
@@ -23,8 +25,9 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     type: () => String,
+    enum: CityName,
     required: true})
-  public city: string;
+  public city: CityName;
 
   @prop({required: true})
   public preview: string;
@@ -54,14 +57,15 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({required: true})
   public numberGuests: number;
 
-  @prop()
+  @prop({required: true})
   public cost: number;
 
   @prop({
-    type: () => String,
-    enum: ComfortType
+    type: () => [String],
+    enum: ComfortType,
+    required: true
   })
-  public comforts: ComfortType;
+  public comforts: ComfortType[];
 
   @prop({default: 0})
   public commentCount: number;
@@ -72,11 +76,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   })
   public userId: Ref<UserEntity>;
 
-  @prop({required: true})
-  public latitude: number;
-
-  @prop({required: true})
-  public longitude: number;
+  @prop({_id: false, required: true})
+  public coordinates: Coordinates;
 }
 
 export const OfferModel = getModelForClass(OfferEntity);
