@@ -1,4 +1,4 @@
-import { CITIES } from './city.constants';
+import { CITIES } from './city.constants.js';
 
 export type CityName = typeof CITIES[number]['name'];
 

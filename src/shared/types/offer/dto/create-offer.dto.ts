@@ -1,7 +1,7 @@
-﻿import {CityName} from '../../city.enum';
-import {TypeOffer} from '../../type-offer.enum';
-import {ComfortType} from '../../comfort.enum';
-import {Coordinates} from '../../coordinates.types';
+import {CityName} from '../../city.enum.js';
+import {TypeOffer} from '../../type-offer.enum.js';
+import {ComfortType} from '../../comfort.enum.js';
+import {Coordinates} from '../../coordinates.types.js';
 
 
 export class CreateOfferDto {

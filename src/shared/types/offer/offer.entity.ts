@@ -1,9 +1,9 @@
-﻿import { defaultClasses, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
-import {UserEntity} from '../user/user.entity';
-import {ComfortType} from '../comfort.enum';
-import {TypeOffer} from '../type-offer.enum';
-import {CityName} from '../city.enum';
-import {Coordinates} from '../coordinates.types';
+import { defaultClasses, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
+import {UserEntity} from '../user/user.entity.js';
+import {ComfortType} from '../comfort.enum.js';
+import {TypeOffer} from '../type-offer.enum.js';
+import {CityName} from '../city.enum.js';
+import {Coordinates} from '../coordinates.types.js';
 
 export interface OfferEntity extends defaultClasses.Base {}
 
@@ -32,7 +32,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({required: true})
   public preview: string;
 
-  @prop({required: true})
+  @prop({ type: () => [String], required: true })
   public images: string[];
 
   @prop({required: true})

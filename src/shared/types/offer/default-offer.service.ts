@@ -1,10 +1,10 @@
-﻿import { inject, injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { OfferService } from './offer-service.interface.js';
 import { DocumentType, types } from '@typegoose/typegoose';
 import { OfferEntity } from './offer.entity.js';
 import { CreateOfferDto } from './dto/create-offer.dto.js';
-import {Logger} from '../../libs/logger/logger.interface';
-import {Component} from '../component.enum';
+import {Logger} from '../../libs/logger/logger.interface.js';
+import {Component} from '../component.enum.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {

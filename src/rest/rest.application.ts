@@ -1,10 +1,10 @@
-﻿import {Logger} from '../shared/libs/logger/logger.interface.js';
+import {Logger} from '../shared/libs/logger/logger.interface.js';
 import {RestSchema} from '../shared/libs/config/rest.schema.js';
 import {Config} from '../shared/libs/config/config.interface.js';
 import {inject, injectable} from 'inversify';
 import {Component} from '../shared/types/component.enum.js';
 import {getMongoURI} from '../shared/helpers/database.js';
-import {DatabaseClient} from '../shared/libs/database-client/database-client.interface';
+import {DatabaseClient} from '../shared/libs/database-client/database-client.interface.js';
 
 @injectable()
 export class RestApplication {
@@ -30,7 +30,7 @@ export class RestApplication {
     this.logger.info('Application initialization');
     this.logger.info(`Get value from env $PORT: ${this.config.get('PORT')}`);
 
-    this.logger.info('Init database…');
+    this.logger.info('Init database');
     await this._initDb();
     this.logger.info('Init database completed');
   }

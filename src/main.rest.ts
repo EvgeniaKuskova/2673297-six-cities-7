@@ -1,10 +1,10 @@
-﻿import 'reflect-metadata';
+import 'reflect-metadata';
 import { Container } from 'inversify';
 import {Component} from './shared/types/component.enum.js';
 import {RestApplication} from './rest/rest.application.js';
-import {createOfferContainer} from './shared/types/offer/offer.container';
-import {createRestApplicationContainer} from './rest/rest.container';
-import {createUserContainer} from './shared/types/user/user.container';
+import {createOfferContainer} from './shared/types/offer/offer.container.js';
+import {createRestApplicationContainer} from './rest/rest.container.js';
+import {createUserContainer} from './shared/types/user/user.container.js';
 
 
 async function bootstrap() {

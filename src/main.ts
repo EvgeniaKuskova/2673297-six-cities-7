@@ -4,7 +4,6 @@ import { CLIApplication, HelpCommand, ImportCommand, VersionCommand, GenerateCom
 
 function bootstrap() {
   const cliApplication = new CLIApplication();
-  console.log('ПОЛУЧЕННЫЕ АРГУМЕНТЫ:', process.argv);
   cliApplication.registerCommands([
     new HelpCommand(),
     new VersionCommand(),

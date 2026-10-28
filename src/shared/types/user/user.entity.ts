@@ -1,5 +1,5 @@
-﻿import { defaultClasses, getModelForClass, prop, modelOptions } from '@typegoose/typegoose';
-import {User, UserType} from './user.type';
+import { defaultClasses, getModelForClass, prop, modelOptions } from '@typegoose/typegoose';
+import {User, UserType} from './user.type.js';
 import {createSHA256} from '../../helpers/hash.js';
 
 export interface UserEntity extends defaultClasses.Base {}
@@ -11,7 +11,7 @@ export interface UserEntity extends defaultClasses.Base {}
 })
 
 export class UserEntity extends defaultClasses.TimeStamps implements User {
-  @prop({ required: true, min: 1, max: 15 })
+  @prop({ required: true, minlength: 1, maxlength: 15 })
   public name: string;
 
   @prop({ unique: true, required: true })
