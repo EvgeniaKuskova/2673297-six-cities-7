@@ -6,6 +6,7 @@ import {Component} from '../shared/types/component.enum.js';
 import {getMongoURI} from '../shared/helpers/database.js';
 import {DatabaseClient} from '../shared/libs/database-client/database-client.interface.js';
 import express, {Express} from 'express';
+import {Controller} from '../shared/libs/rest/controller/controller.interface.js';
 
 @injectable()
 export class RestApplication {
@@ -15,6 +16,7 @@ export class RestApplication {
     @inject(Component.Logger) private readonly logger: Logger,
     @inject(Component.Config) private readonly config: Config<RestSchema>,
     @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient,
+    @inject(Component.UserController) private readonly userController: Controller,
   ) {
     this.server = express();
   }
@@ -37,6 +39,7 @@ export class RestApplication {
   }
 
   private async _initControllers() {
+    this.server.use('/users', this.userController.router);
   }
 
   private async _initMiddleware() {
