@@ -729,7 +729,7 @@ components:
             - numberRooms
             - numberGuests
             - comforts
-            - author
+            - user
             - coordinates
           properties:
             description:
@@ -762,7 +762,7 @@ components:
                   - Washer
                   - Towels
                   - Fridge
-            author:
+            user:
               $ref: '#/components/schemas/User'
             coordinates:
               $ref: '#/components/schemas/Coordinates'
