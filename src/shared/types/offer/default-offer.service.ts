@@ -6,10 +6,10 @@ import { CreateOfferDto } from './dto/create-offer.dto.js';
 import {Logger} from '../../libs/logger/logger.interface.js';
 import {Component} from '../component.enum.js';
 import { UpdateOfferDto } from './dto/update-offer.dto.js';
-import {DEFAULT_OFFER_COUNT, PREMIUM_OFFER_COUNT} from './offer.constant';
-import {SortType} from '../sort-type.enum';
-import {CityName} from '../city.enum';
-import {CommentService} from '../comment/comment-service.interface';
+import {DEFAULT_OFFER_COUNT, PREMIUM_OFFER_COUNT} from './offer.constant.js';
+import {SortType} from '../sort-type.enum.js';
+import {CityName} from '../city.enum.js';
+import {CommentService} from '../comment/comment-service.interface.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {
