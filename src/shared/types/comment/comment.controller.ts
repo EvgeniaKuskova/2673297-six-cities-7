@@ -13,6 +13,8 @@ import {CommentRdo} from './rdo/comment.rdo.js';
 import {Request, Response} from 'express';
 import {OfferRdo} from '../offer/rdo/offer.rdo.js';
 import {ValidateObjectIdMiddleware} from '../../libs/rest/middleware/validate-objectid.middleware.js';
+import {ValidateDtoMiddleware} from '../../libs/rest/middleware/validate-dto.middleware.js';
+import {CreateCommentDto} from './dto/create-comment.dto.js';
 
 @injectable()
 export default class CommentController extends BaseController {
@@ -27,7 +29,8 @@ export default class CommentController extends BaseController {
     this.addRoute({
       path: '/',
       method: HttpMethod.Post,
-      handler: this.create
+      handler: this.create,
+      middlewares: [new ValidateDtoMiddleware(CreateCommentDto)]
     });
     this.addRoute({
       path: '/:id',
