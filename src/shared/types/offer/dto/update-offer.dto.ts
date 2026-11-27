@@ -10,7 +10,6 @@ import {
   IsEnum,
   IsInt, IsOptional,
   IsString,
-  IsUrl,
   Length, Max,
   Min, ValidateNested
 } from 'class-validator';
@@ -34,12 +33,12 @@ export class UpdateOfferDto {
   public city?: CityName;
 
   @IsOptional()
-  @IsUrl({}, {message: OfferValidationMessage.preview.invalidFormat})
+  @IsString({message: OfferValidationMessage.preview.invalidFormat})
   public preview?: string;
 
   @IsOptional()
   @IsArray({message: OfferValidationMessage.images.invalidFormat})
-  @IsUrl({}, { each: true, message: OfferValidationMessage.images.invalidFormat})
+  @IsString({ each: true, message: OfferValidationMessage.images.invalidFormat})
   @ArrayMinSize(6, {message: OfferValidationMessage.images.lengthField})
   @ArrayMaxSize(6, {message: OfferValidationMessage.images.lengthField})
   public images?: string[];

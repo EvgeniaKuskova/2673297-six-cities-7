@@ -1,10 +1,10 @@
 ﻿export const OfferValidationMessage = {
   name: {
-    invalidFormat: 'name is string',
+    invalidFormat: 'name must be a string',
     lengthField: 'min length is 10, max is 100'
   },
   description: {
-    invalidFormat: 'description is string',
+    invalidFormat: 'description must be a string',
     lengthField: 'min length is 20, max is 1024'
   },
   date: {
@@ -14,14 +14,14 @@
     invalidFormat: 'city must be one of [Paris, Cologne, Brussels, Amsterdam, Hamburg, Dusseldorf]',
   },
   preview: {
-    invalidFormat: 'preview is url',
+    invalidFormat: 'preview must be a string',
   },
   images: {
-    invalidFormat: 'must be array and each image is url',
+    invalidFormat: 'must be array and each image must be astring',
     lengthField: 'should be 6 images',
   },
   isPremium: {
-    invalidFormat: 'isPremium is boolean',
+    invalidFormat: 'isPremium must be a boolean',
   },
   type: {
     invalid: 'type must be apartment, room, house or hotel',

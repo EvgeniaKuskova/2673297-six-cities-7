@@ -3,6 +3,6 @@
     invalidFormat: 'email must be a valid address',
   },
   password: {
-    invalidFormat: 'password is string',
+    invalidFormat: 'password must be a string',
   }
 } as const;

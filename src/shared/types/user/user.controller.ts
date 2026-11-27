@@ -1,7 +1,6 @@
 ﻿import { inject, injectable } from 'inversify';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { CreateUserRequest } from './create-user-request.type.js';
 import { UserService } from './user-service.interface.js';
 import { UserRdo } from './rdo/user.rdo.js';
 import { LoginUserRequest } from './login-user-request.type.js';
@@ -16,6 +15,7 @@ import {HttpError} from '../../libs/rest/error/http-error.js';
 import {ValidateDtoMiddleware} from '../../libs/rest/middleware/validate-dto.middleware.js';
 import {CreateUserDto} from './dto/create-user.dto.js';
 import {LoginUserDto} from './dto/login-user.dto.js';
+import {UploadFileMiddleware} from '../../libs/rest/middleware/upload-file.middleware.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -25,13 +25,16 @@ export class UserController extends BaseController {
     @inject(Component.Config) private readonly configService: Config<RestSchema>,
   ) {
     super(logger);
-    this.logger.info('Register routes for UserController…');
+    this.logger.info('Register routes for UserController');
 
     this.addRoute({
       path: '/register',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [new ValidateDtoMiddleware(CreateUserDto)]
+      middlewares: [
+        new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatarPath'),
+        new ValidateDtoMiddleware(CreateUserDto)
+      ]
     });
     this.addRoute({
       path: '/login',
@@ -42,9 +45,12 @@ export class UserController extends BaseController {
   }
 
   public async create(
-    { body }: CreateUserRequest,
+    req: Request,
     res: Response,
   ): Promise<void> {
+    const { body } = req;
+    const avatarPath = req.file?.path;
+
     const existsUser = await this.userService.findByEmail(body.email);
 
     if (existsUser) {
@@ -55,7 +61,8 @@ export class UserController extends BaseController {
       );
     }
 
-    const result = await this.userService.create(body, this.configService.get('SALT'));
+    const userData = { ...body, avatarPath };
+    const result = await this.userService.create(userData, this.configService.get('SALT'));
     this.created(res, fillDTO(UserRdo, result));
   }
 

@@ -11,7 +11,7 @@ import {
   IsEnum,
   IsInt,
   IsMongoId,
-  IsString, IsUrl,
+  IsString,
   Length,
   Max,
   Min, ValidateNested
@@ -35,11 +35,11 @@ export class CreateOfferDto {
   @IsEnum(CityName, {message: OfferValidationMessage.city.invalidFormat})
   public city: CityName;
 
-  @IsUrl({}, {message: OfferValidationMessage.preview.invalidFormat})
+  @IsString({message: OfferValidationMessage.preview.invalidFormat})
   public preview: string;
 
   @IsArray({message: OfferValidationMessage.images.invalidFormat})
-  @IsUrl({}, { each: true, message: OfferValidationMessage.images.invalidFormat})
+  @IsString({ each: true, message: OfferValidationMessage.images.invalidFormat})
   @ArrayMinSize(6, {message: OfferValidationMessage.images.lengthField})
   @ArrayMaxSize(6, {message: OfferValidationMessage.images.lengthField})
   public images: string[];
